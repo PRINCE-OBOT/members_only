@@ -4,7 +4,7 @@ async function addUser(user) {
   const { firstName, lastName, email, hashedPassword, isAdmin } = user;
   await pool.query(
     "INSERT INTO users (firstName, lastName, email, password, isMember, isAdmin) VALUES ($1, $2, $3, $4, $5, $6)",
-    [firstName, lastName, email, hashedPassword, false, false]
+    [firstName, lastName, email, hashedPassword, false, isAdmin]
   );
 }
 

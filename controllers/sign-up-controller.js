@@ -5,7 +5,7 @@ const query = require("../db/query");
 const alphaErr = "must contain only letters";
 const lengthErr = "must be between 1 and 10 characters";
 
-const validateUserSignUp = [
+const validateSignUp = [
   body("firstName")
     .trim()
     .isAlpha()
@@ -31,8 +31,8 @@ const validateUserSignUp = [
   })
 ];
 
-const userSignupController = [
-  validateUserSignUp,
+const signupController = [
+  validateSignUp,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -61,4 +61,4 @@ const userSignupController = [
   }
 ];
 
-module.exports = userSignupController;
+module.exports = signupController;
