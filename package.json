@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "start": "node --env-file=.env --watch app.js",
+    "db_connect": "psql -U princeobot -d members_only",
+    "db_view_users": "psql -U princeobot -d members_only -c 'SELECT * FROM users;'",
+    "db_view_mes": "psql -U princeobot -d members_only -c 'SELECT * FROM messages;'"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "connect-pg-simple": "^10.0.0",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.20.0"
+  }
+}
