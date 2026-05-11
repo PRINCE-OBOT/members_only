@@ -5,6 +5,7 @@ const session = require("express-session");
 const router = require("./routes/index");
 const pool = require("./db/pool");
 const loginController = require("./controllers/log-in-controller");
+const isAuthenticatedController = require("./controllers/is-authenticated-controller");
 const pgSession = require("connect-pg-simple")(session);
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -23,18 +24,19 @@ app.use(
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
   })
 );
-app.use(passport.initialize());
 
 app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/user", router);
+app.use(isAuthenticatedController);
+
+app.use("/", router);
 
 app.post(
   "/log-in",
   passport.authenticate("local", {
-    successRedirect: "user/dashboard",
+    successRedirect: "/",
     failureRedirect: "/"
   })
 );

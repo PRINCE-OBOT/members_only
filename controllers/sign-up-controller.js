@@ -40,7 +40,7 @@ const signupController = [
       //   title: "Sign Up",
       //   errors: errors.array()
       // });
-      res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const { firstName, lastName, email, isAdmin, password } = matchedData(req);
