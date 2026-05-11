@@ -28,10 +28,10 @@ const localStrategy = () => {
 };
 
 const serializeUser = (user, done) => {
-  done(null, user.id);
+  done(null, user.id); // run when user login
 };
 
-const deserializeUser = async (id, done) => {
+const deserializeUser = async (id, done) => { // run when user hit different routes
   try {
     const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [
       id
