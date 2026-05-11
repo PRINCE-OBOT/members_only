@@ -4,16 +4,19 @@ const signupController = require("../controllers/sign-up-controller");
 const { loginController } = require("../controllers/log-in-controller");
 const logoutController = require("../controllers/log-out-controller");
 const messageController = require("../controllers/message-controller");
+const deleteMessageController = require("../controllers/delete-message-controller");
 
 const router = Router();
 
 router.get("/", homePageController);
 
 router.post("/sign-up", signupController);
-
+ 
 router.get("/log-in", loginController);
 
 router.post("/message", messageController);
+
+router.get("/message/:id", deleteMessageController);
 
 router.get("/log-out", logoutController);
 

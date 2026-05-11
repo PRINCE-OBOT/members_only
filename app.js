@@ -33,13 +33,20 @@ app.use(isAuthenticatedController);
 
 app.use("/", router);
 
-app.post(
-  "/log-in",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/"
-  })
-);
+app.post("/log-in", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+
+    if (!user) {
+      return res.json({ message: "Login failed", error: info.message });
+    }
+
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      res.redirect("/");
+    });
+  })(req, res, next);
+});
 
 passport.use(loginController.localStrategy());
 

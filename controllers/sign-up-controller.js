@@ -6,6 +6,7 @@ const alphaErr = "must contain only letters";
 const lengthErr = "must be between 1 and 10 characters";
 
 const validateSignUp = [
+  body("isAdmin"),
   body("firstName")
     .trim()
     .isAlpha()
@@ -47,12 +48,14 @@ const signupController = [
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    console.log(query);
+    const isMember = isAdmin ? true : false;
+
     query.addUser({
       firstName,
       lastName,
       hashedPassword,
       email,
+      isMember,
       isAdmin
     });
 
