@@ -6,6 +6,7 @@ const router = require("./routes/index");
 const pool = require("./db/pool");
 const loginController = require("./controllers/log-in-controller");
 const isAuthenticatedController = require("./controllers/is-authenticated-controller");
+const errorController = require("./controllers/error-controller");
 const pgSession = require("connect-pg-simple")(session);
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -33,7 +34,15 @@ app.use(isAuthenticatedController);
 
 app.use("/", router);
 
-app.post("/log-in", (req, res, next) => {
+app.post("/log-in", passportAuthController);
+
+passport.use(loginController.localStrategy());
+
+passport.serializeUser(loginController.serializeUser);
+
+passport.deserializeUser(loginController.deserializeUser);
+
+function passportAuthController(req, res, next) {
   passport.authenticate("local", (err, user, info) => {
     if (err) return next(err);
 
@@ -46,13 +55,9 @@ app.post("/log-in", (req, res, next) => {
       res.redirect("/");
     });
   })(req, res, next);
-});
+}
 
-passport.use(loginController.localStrategy());
-
-passport.serializeUser(loginController.serializeUser);
-
-passport.deserializeUser(loginController.deserializeUser);
+app.use(errorController);
 
 app.listen(PORT, (error) => {
   if (error) throw error;
