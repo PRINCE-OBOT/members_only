@@ -11,6 +11,9 @@ const validatePasscode = [
 const memberPasscodeController = [
   validatePasscode,
   async (req, res) => {
+    if (req.user.isadmin)
+      return res.status(400).json({ message: "You are already an admin" });
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       // return res.status(400).render("sign-up", {
@@ -27,7 +30,15 @@ const memberPasscodeController = [
       name: "member"
     });
 
+    const { id, email } = req.user;
+
     if (isPasscodeValid) {
+      await query.updateUser({
+        id,
+        email,
+        isMember: true
+      });
+
       res.json({ message: "Valid" });
     } else {
       res.json({ message: "inValid" });

@@ -14,7 +14,7 @@ async function updateUser(user) {
 
   await pool.query(
     "UPDATE users SET isAdmin = $4, isMember = $3 WHERE id = $1 AND email = $2",
-    [id, email, isMember, isAdmin]
+    [id, email, isMember || false, isAdmin || false]
   );
 }
 
