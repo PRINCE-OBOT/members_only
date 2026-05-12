@@ -13,18 +13,18 @@ const router = Router();
 router.get("/", homePageController);
 
 router.post("/sign-up", signupController);
- 
+
 router.get("/log-in", loginController);
 
 router.post("/message", messageController);
 
 router.get("/message/:id", deleteMessageController);
 
-router.get("/passcode", memberPasscodeController);
+router.get("/join-club", memberPasscodeController);
 
-router.post("/passcode/member", memberPasscodeController);
+router.post("/join-club/member", memberPasscodeController);
 
-router.post("/passcode/admin", adminPasscodeController);
+router.post("/join-club/admin", adminPasscodeController);
 
 router.get("/log-out", logoutController);
 
