@@ -21,6 +21,12 @@ CREATE TABLE messages (
   userId INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE passcodes (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  passcode VARCHAR(100) NOT NULL
+);
+
 INSERT INTO users (firstName, lastName, email, password, isMember, isAdmin) VALUES
 ('Alice', 'Johnson', 'alice@mail.com', 'hashedpassword1', TRUE, FALSE),
 ('Bob', 'Smith', 'bob@mail.com', 'hashedpassword2', TRUE, FALSE),
@@ -33,6 +39,10 @@ INSERT INTO messages (title, text, userId) VALUES
 ('Just Browsing', 'I hope to join someday.', 3),
 ('Admin Notice', 'Please keep discussions respectful.', 4),
 ('Weekend Plans', 'Anyone up for a meetup?', 1);
+
+INSERT INTO passcodes (name, passcode) VALUES
+('member', 'hole'),
+('admin', '123456p.');
 `;
 
 async function main() {
