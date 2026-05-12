@@ -9,6 +9,15 @@ async function addUser(user) {
   );
 }
 
+async function updateUser(user) {
+  const { id, email, isMember, isAdmin } = user;
+
+  await pool.query(
+    "UPDATE users SET isAdmin = $4, isMember = $3 WHERE id = $1 AND email = $2",
+    [id, email, isMember, isAdmin]
+  );
+}
+
 async function addMessage(message) {
   const { title, text, userId } = message;
 
@@ -30,4 +39,10 @@ async function isPasscodeValid({ name, passcode }) {
   return rows[0];
 }
 
-module.exports = { addUser, addMessage, deleteMessage, isPasscodeValid };
+module.exports = {
+  addUser,
+  updateUser,
+  addMessage,
+  deleteMessage,
+  isPasscodeValid
+};

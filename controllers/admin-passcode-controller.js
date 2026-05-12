@@ -27,7 +27,15 @@ const adminPasscodeController = [
       name: "admin"
     });
 
+    const { id, email } = req.user;
+
     if (isPasscodeValid) {
+      await query.updateUser({
+        id,
+        email,
+        isMember: true,
+        isAdmin: true
+      });
       res.json({ message: "Valid" });
     } else {
       res.json({ message: "inValid" });
