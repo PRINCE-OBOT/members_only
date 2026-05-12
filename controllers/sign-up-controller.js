@@ -52,7 +52,6 @@ const signupController = [
       lastName,
       hashedPassword,
       email,
-      isMember,
     });
 
     res.json({ message: "signup" });

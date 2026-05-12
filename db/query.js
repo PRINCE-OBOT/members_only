@@ -22,4 +22,12 @@ async function deleteMessage(id) {
   await pool.query("DELETE FROM messages WHERE id = $1", [id]);
 }
 
-module.exports = { addUser, addMessage, deleteMessage };
+async function isPasscodeValid({ name, passcode }) {
+  const { rows } = await pool.query(
+    "SELECT * FROM passcodes WHERE name = $1 AND passcode = $2",
+    [name, passcode]
+  );
+  return rows[0];
+}
+
+module.exports = { addUser, addMessage, deleteMessage, isPasscodeValid };
