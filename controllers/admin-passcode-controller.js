@@ -8,7 +8,7 @@ const validatePasscode = [
     .withMessage("Member passcode must not be empty")
 ];
 
-const memberPasscodeController = [
+const adminPasscodeController = [
   validatePasscode,
   async (req, res) => {
     const errors = validationResult(req);
@@ -24,7 +24,7 @@ const memberPasscodeController = [
 
     const isPasscodeValid = await query.isPasscodeValid({
       passcode,
-      name: "member"
+      name: "admin"
     });
 
     if (isPasscodeValid) {
@@ -37,4 +37,4 @@ const memberPasscodeController = [
   }
 ];
 
-module.exports = memberPasscodeController;
+module.exports = adminPasscodeController;
