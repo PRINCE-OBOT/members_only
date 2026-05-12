@@ -1,0 +1,163 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* font */
+@font-face {
+  font-family: Roboto;
+  src:
+    url(./assets/fonts/Roboto-400.woff) format(woff),
+    url(./assets/fonts/Roboto-400.woff2) format(woff2);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Pacifico;
+  src:
+    url(./assets/fonts/Pacifico-Regular.woff) format(woff),
+    url(./assets/fonts/Pacifico-Regular.woff2) format(woff2);
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+
+:root {
+  --text: #5b5166;
+  --text-h: #0f325d;
+  --pri-accent: rgb(6, 73, 92);
+  --sec-accent: rgb(186, 222, 232);
+  --white: rgb(255, 255, 255);
+  --black: rgb(0, 0, 0);
+  --grey:  rgb(212, 207, 207);
+  --error-transparent: rgba(249, 12, 12, 0.2);
+  --error: rgba(249, 12, 12);
+
+  --transparent-white-xsm: rgba(255, 255, 255, 0.8);
+  --transparent-white-sm: rgba(255, 255, 255, 0.5);
+  --transparent-white-lg: rgba(255, 255, 255, 0.2);
+
+  --transparent-black-xsm: rgba(0, 0, 0, 0.8);
+  --transparent-black-sm: rgba(0, 0, 0, 0.5);
+  --transparent-black-lg: rgba(0, 0, 0, 0.2);
+
+  --sz-xxxsm: 1px;
+  --sz-xxsm: 2px;
+  --sz-xsm: 5px;
+  --sz-sm: 10px;
+  --sz-lg: 20px;
+  --sz-xlg: 30px;
+  --sz-xxlg: 60px;
+
+  --bx-shadow: 0.5px 0.5px 5px var(--transparent-black-lg);
+}
+
+body {
+  font-family: Roboto, arial;
+  font-size: clamp(
+    var(--sz-sm),
+    var(--sz-sm) + 0.5vw,
+    var(--sz-sm) + var(--sz-xsm)
+  );
+  color: var(--black);
+}
+
+.container {
+  display: flex;
+  width: min(90%, 1300px);
+  padding: 20px 0;
+  margin: 0 auto 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  border-radius: 5px;
+  box-shadow: var(--bx-shadow);
+  padding: 10px;
+  background-color: var(--grey);
+}
+
+.logo a {
+  font-family: Pacifico, cursive;
+}
+
+.logo_icon {
+  height: 25px;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  height: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
+}

@@ -1,4 +1,5 @@
 const express = require("express");
+const { join } = require("path");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
@@ -12,6 +13,10 @@ const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.set("views", join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static('public'))
 
 app.use(
   session({

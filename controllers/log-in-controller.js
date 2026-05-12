@@ -52,7 +52,7 @@ const deserializeUser = async (id, done) => {
 };
 
 const loginController = (req, res) => {
-  res.json({ message: "Log in page" });
+  res.render("index", { title: "Log-in", pageTemplate: "login" });
 };
 
 module.exports = {

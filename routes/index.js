@@ -20,7 +20,7 @@ router.post("/message", messageController);
 
 router.get("/message/:id", deleteMessageController);
 
-// router.get("/passcode", memberPasscodeController);
+router.get("/passcode", memberPasscodeController);
 
 router.post("/passcode/member", memberPasscodeController);
 
