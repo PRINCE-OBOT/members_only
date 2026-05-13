@@ -29,7 +29,10 @@
         </div>
     </div>  
 
+    <h3><%= userIs === 'member' ? 'Member' : userIs === 'admin' ? 'Admin' : 'Join club to have more access.' %></h3>
+
     <div class="messages_wrap">
+
         <% rows.forEach((row)=>{ %>
             <% const {title, text, useremail, createdat} = row %>
             <li class="message">
@@ -38,7 +41,7 @@
                 <hr>
                 <div class="from">
                     <svg xmlns="http://www.w3.org/2000/svg" class="message_icon" viewBox="0 0 24 24"><path d="M6,17C6,15 10,13.9 12,13.9C14,13.9 18,15 18,17V18H6M15,9A3,3 0 0,1 12,12A3,3 0 0,1 9,9A3,3 0 0,1 12,6A3,3 0 0,1 15,9M3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3H5C3.89,3 3,3.9 3,5Z" /></svg>
-                    <p class="from_text">From </p> <p> <%= useremail %> </p>
+                    <p class="from_text">From </p> <p> <%= userIs === 'member' || userIs === 'admin' ?  useremail : '*****' %> </p>
                 </div>
                 <div class="createdat"> 
                      <svg
@@ -50,7 +53,7 @@
                         <path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z"/>
                     </svg>
                     <p class="createdat_text">Created at</p> 
-                    <p> <%= format(createdat, "EEEE dd, MMM, yyyy") %> </p>
+                    <p> <%= userIs === 'member' || userIs === 'admin' ?  format(createdat, "EEEE dd, MMM, yyyy")  : '*****' %> </p>
                 </div>
                 <% userIs %>
             </li>
