@@ -3,7 +3,7 @@
 const { Client } = require("pg");
 
 const SQL = `
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   firstName VARCHAR(100) NOT NULL,
   lastName VARCHAR(100) NOT NULL,
@@ -13,15 +13,16 @@ CREATE TABLE users (
   isAdmin BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE messages (
+CREATE TABLE IF NOT EXISTS messages (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   text TEXT NOT NULL,
+  userEmail TEXT NOT NULL,
   createdAt TIMESTAMP DEFAULT NOW(),
   userId INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE TABLE passcodes (
+CREATE TABLE IF NOT EXISTS passcodes (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   passcode VARCHAR(100) NOT NULL
@@ -33,12 +34,12 @@ INSERT INTO users (firstName, lastName, email, password, isMember, isAdmin) VALU
 ('Charlie', 'Brown', 'charlie@mail.com', 'hashedpassword3', FALSE, FALSE),
 ('Diana', 'Prince', 'diana@mail.com', 'hashedpassword4', TRUE, TRUE);
 
-INSERT INTO messages (title, text, userId) VALUES
-('Hello Club', 'Excited to be a member here!', 1),
-('My First Post', 'This is a great community.', 2),
-('Just Browsing', 'I hope to join someday.', 3),
-('Admin Notice', 'Please keep discussions respectful.', 4),
-('Weekend Plans', 'Anyone up for a meetup?', 1);
+INSERT INTO messages (title, text, userEmail, userId) VALUES
+('Hello Club', 'Excited to be a member here!', 'alice@mail.com', 1),
+('My First Post', 'This is a great community.', 'bob@mail.com', 2),
+('Just Browsing', 'I hope to join someday.', 'charlie@mail.com' , 3),
+('Admin Notice', 'Please keep discussions respectful.', 'diana@mail.com', 4),
+('Weekend Plans', 'Anyone up for a meetup?', 'alice@mail.com', 1);
 
 INSERT INTO passcodes (name, passcode) VALUES
 ('member', 'hole'),

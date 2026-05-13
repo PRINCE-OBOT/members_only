@@ -51,7 +51,7 @@ const postController = [
         confirmPassword
       });
     }
-// if the first name is provided, input it in input, else add it error message bellow it
+    // if the first name is provided, input it in input, else add it error message bellow it
     const hashedPassword = await bcrypt.hash(password, 10);
 
     query.addUser({
@@ -61,7 +61,7 @@ const postController = [
       email
     });
 
-    res.json({ message: "signup" });
+    res.render("index", { title: "Log in", pageTemplate: "login" });
     // res.redirect("/log-in");
   }
 ];

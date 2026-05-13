@@ -27,10 +27,13 @@ const messageController = [
 
     const { title, text } = matchedData(req);
 
+    const { id, email } = req.user
+
     query.addMessage({
-      userId: req.user.id,
+      userId: id,
       title,
-      text
+      text,
+      email
     });
 
     res.json({ message: "Message sent" });

@@ -24,17 +24,24 @@ async function getUsers() {
   return rows;
 }
 
-async function addMessage(message) {
-  const { title, text, userId } = message;
 
+async function addMessage(message) {
+  const { title, text, email, userId } = message;
+  
   await pool.query(
-    "INSERT INTO messages (title, text, createdAt, userId) VALUES ($1, $2, NOW(), $3)",
-    [title, text, userId]
+    "INSERT INTO messages (title, text, email, createdAt, userId) VALUES ($1, $2, NOW(), $3)",
+    [title, text, email, userId]
   );
 }
 
 async function deleteMessage(id) {
   await pool.query("DELETE FROM messages WHERE id = $1", [id]);
+}
+
+async function getMessages() {
+  const { rows } = await pool.query("SELECT * FROM messages");
+
+  return rows;
 }
 
 async function isPasscodeValid({ name, passcode }) {
@@ -51,5 +58,6 @@ module.exports = {
   getUsers,
   addMessage,
   deleteMessage,
+  getMessages,
   isPasscodeValid
 };

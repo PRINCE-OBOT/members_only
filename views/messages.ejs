@@ -1,31 +1,59 @@
 <section class="messages">
-  <div class="message_header">
-    <div class="privacy_icon_wrap">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
-        <path
-          d="M12,12H19C18.47,16.11 15.72,19.78 12,20.92V12H5V6.3L12,3.19M12,1L3,5V11C3,16.55 6.84,21.73 12,23C17.16,21.73 21,16.55 21,11V5L12,1Z"
-        />
-      </svg>
-    </div>
-    <div class="message_heading_wrap">
-      <div>
-        <h1>Messages</h1>
-        <p><%= rows.length %> messages on the clubhouse</p>
-      </div>
-      
-      <a href="/message" class="add_msg_wrap">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="white"
-          class="icon"
-        >
-          <path
-            d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z"
-          />
+    <div class="message_header">
+        <div class="privacy_icon_wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+            <path
+            d="M12,12H19C18.47,16.11 15.72,19.78 12,20.92V12H5V6.3L12,3.19M12,1L3,5V11C3,16.55 6.84,21.73 12,23C17.16,21.73 21,16.55 21,11V5L12,1Z"
+            />
         </svg>
-        Add message
-      </a>
+        </div>
+        <div class="message_heading_wrap">
+        <div>
+            <h1>Messages</h1>
+            <p><%= rows.length %> messages on the clubhouse</p>
+        </div>
+
+        <a href="/message" class="add_msg_wrap">
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="white"
+            class="icon"
+            >
+            <path
+                d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z"
+            />
+            </svg>
+            Add message
+        </a>
+        </div>
+    </div>  
+
+    <div class="messages_wrap">
+        <% rows.forEach((row)=>{ %>
+            <% const {title, text, useremail, createdat} = row %>
+            <li class="message">
+                <h3 class="title"><%= title %></h3>
+                <p class="text"><%= text %></p>
+                <hr>
+                <div class="from">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="message_icon" viewBox="0 0 24 24"><path d="M6,17C6,15 10,13.9 12,13.9C14,13.9 18,15 18,17V18H6M15,9A3,3 0 0,1 12,12A3,3 0 0,1 9,9A3,3 0 0,1 12,6A3,3 0 0,1 15,9M3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3H5C3.89,3 3,3.9 3,5Z" /></svg>
+                    <p class="from_text">From </p> <p> <%= useremail %> </p>
+                </div>
+                <div class="createdat"> 
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="black"
+                        class="message_icon"
+                        >
+                        <path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z"/>
+                    </svg>
+                    <p class="createdat_text">Created at</p> 
+                    <p> <%= format(createdat, "EEEE dd, MMM, yyyy") %> </p>
+                </div>
+                <% userIs %>
+            </li>
+        <% }) %>
     </div>
-  </div>
 </section>
