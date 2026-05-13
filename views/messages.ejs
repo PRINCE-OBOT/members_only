@@ -55,7 +55,7 @@
     <p><b>Club level: </b><%= userIs === 'member' ? 'Member' : userIs === 'admin' ? 'Admin' : 'Visitor, Join club to have more access.' %></p>
 
     <h2>Messages</h2>
-    
+
     <div class="messages_wrap">
 
         <% rows.reverse().forEach((row)=>{ %>
@@ -64,21 +64,52 @@
                 <h3 class="title"><%= title %></h3>
                 <p class="text"><%= text %></p>
                 <hr>
+                
                 <div class="from">
                     <svg xmlns="http://www.w3.org/2000/svg" class="message_icon" viewBox="0 0 24 24"><path d="M6,17C6,15 10,13.9 12,13.9C14,13.9 18,15 18,17V18H6M15,9A3,3 0 0,1 12,12A3,3 0 0,1 9,9A3,3 0 0,1 12,6A3,3 0 0,1 15,9M3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3H5C3.89,3 3,3.9 3,5Z" /></svg>
                     <p class="from_text">From </p> <p> <%= userIs === 'member' || userIs === 'admin' ?  useremail : '*****' %> </p>
                 </div>
+                
                 <div class="createdat"> 
                      <svg
                         xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
                         viewBox="0 0 24 24"
-                        fill="black"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
                         class="message_icon"
                         >
-                        <path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z"/>
+                        <rect x="3" y="5" width="18" height="16" rx="2" />
+                        <line x1="16" y1="3" x2="16" y2="7" />
+                        <line x1="8" y1="3" x2="8" y2="7" />
+                        <line x1="3" y1="11" x2="21" y2="11" />
+                        </svg>
+                    <p class="createdat_text">Created at</p> 
+                    <p> <%= userIs === 'member' || userIs === 'admin' ?  format(createdat, "EEE dd, MMM, yyyy")  : '*****' %> </p>
+                </div>
+                
+                <div class="createdat"> 
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="message_icon"
+                        >
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v5l3 3" />
                     </svg>
                     <p class="createdat_text">Created at</p> 
-                    <p> <%= userIs === 'member' || userIs === 'admin' ?  format(createdat, "EEEE dd, MMM, yyyy")  : '*****' %> </p>
+                    <p> <%= userIs === 'member' || userIs === 'admin' ?  format(createdat, "hh: mm: a")  : '*****' %> </p>
                 </div>
 
                 <% if (userIs === 'admin'){ %>
