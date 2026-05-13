@@ -8,6 +8,7 @@ const pool = require("./db/pool");
 const loginController = require("./controllers/log-in-controller");
 const isAuthenticatedController = require("./controllers/is-authenticated-controller");
 const errorController = require("./controllers/error-controller");
+const { title } = require("process");
 const pgSession = require("connect-pg-simple")(session);
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -61,7 +62,8 @@ function passportAuthController(req, res, next) {
 
     req.logIn(user, (err) => {
       if (err) return next(err);
-      res.redirect("/");
+
+      return res.redirect("/");
     });
   })(req, res, next);
 }

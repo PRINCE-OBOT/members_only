@@ -18,6 +18,12 @@ async function updateUser(user) {
   );
 }
 
+async function getUsers() {
+  const { rows } = await pool.query("SELECT * FROM users");
+
+  return rows;
+}
+
 async function addMessage(message) {
   const { title, text, userId } = message;
 
@@ -42,6 +48,7 @@ async function isPasscodeValid({ name, passcode }) {
 module.exports = {
   addUser,
   updateUser,
+  getUsers,
   addMessage,
   deleteMessage,
   isPasscodeValid
