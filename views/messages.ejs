@@ -26,8 +26,7 @@
             </svg>
             Add message
         </a>
-        </div>
-
+        
         <a href="/log-out" class="logout_wrap">
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,12 +48,15 @@
         </svg>
         Logout
         </a>
+        </div>
+
     </div>  
 
-    <p><b>Join club level: </b><%= userIs === 'member' ? 'Member' : userIs === 'admin' ? 'Admin' : 'Visitor, Join club to have more access.' %></p>
+    <p><b>Club level: </b><%= userIs === 'member' ? 'Member' : userIs === 'admin' ? 'Admin' : 'Visitor, Join club to have more access.' %></p>
 
+    <h2>Messages</h2>
+    
     <div class="messages_wrap">
-        <h2>Messages</h2>
 
         <% rows.reverse().forEach((row)=>{ %>
             <% const {id, title, text, useremail, createdat} = row %>

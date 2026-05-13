@@ -9,6 +9,15 @@ async function addUser(user) {
   );
 }
 
+async function isEmailExist(email) {
+  const { rows } = await pool.query(
+    "SELECT email FROM users WHERE email = $1",
+    [email]
+  );
+
+  return rows[0] ? true : false;
+}
+
 async function updateUser(user) {
   const { id, email, isMember, isAdmin } = user;
 
@@ -24,10 +33,9 @@ async function getUsers() {
   return rows;
 }
 
-
 async function addMessage(message) {
   const { title, text, userEmail, userId } = message;
-  
+
   await pool.query(
     "INSERT INTO messages (title, text, userEmail, createdAt, userId) VALUES ($1, $2, $3, NOW(), $4)",
     [title, text, userEmail, userId]
@@ -56,6 +64,7 @@ module.exports = {
   addUser,
   updateUser,
   getUsers,
+  isEmailExist,
   addMessage,
   deleteMessage,
   getMessages,

@@ -38,6 +38,21 @@ const postController = [
 
     const { firstName, lastName, email, password, confirmPassword } =
       matchedData(req);
+    
+      const isEmailExist = await query.isEmailExist(email);
+
+    if (isEmailExist) {
+      return res.status(401).render("index", {
+        title: "Sign Up",
+        pageTemplate: "sign-up",
+        errors: [{ msg: "Email already exist" }],
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword
+      });
+    }
 
     if (!errors.isEmpty()) {
       return res.status(400).render("index", {
@@ -51,10 +66,9 @@ const postController = [
         confirmPassword
       });
     }
-    // if the first name is provided, input it in input, else add it error message bellow it
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    query.addUser({
+    await query.addUser({
       firstName,
       lastName,
       hashedPassword,
@@ -62,7 +76,6 @@ const postController = [
     });
 
     res.render("index", { title: "Log in", pageTemplate: "login" });
-    // res.redirect("/log-in");
   }
 ];
 
@@ -71,3 +84,6 @@ const getController = (req, res) => {
 };
 
 module.exports = { getController, postController };
+
+// show while user signing up data is to be sent to database
+// ensure user does not provide the same email again

@@ -65,6 +65,7 @@ function passportAuthController(req, res, next) {
     if (!user) {
       return res.status(404).render("index", {
         pageTemplate: "login",
+        title: "Log in",
         error: info.message
       });
     }

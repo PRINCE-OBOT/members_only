@@ -44,7 +44,7 @@ const adminPasscodeController = [
         isMember: true,
         isAdmin: true
       });
-      res.redirect('/');
+      res.redirect("/");
     } else {
       req.flash("error", {
         admin: "Incorrect admin passcode"
@@ -52,8 +52,6 @@ const adminPasscodeController = [
 
       res.redirect("/join-club");
     }
-
-    // res.redirect("/");
   }
 ];
 
