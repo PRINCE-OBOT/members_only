@@ -7,6 +7,7 @@ const messageController = require("../controllers/message-controller");
 const deleteMessageController = require("../controllers/delete-message-controller");
 const memberPasscodeController = require("../controllers/member-passcode-controller");
 const adminPasscodeController = require("../controllers/admin-passcode-controller");
+const joinClubController = require("../controllers/join-club-controller");
 
 const router = Router();
 
@@ -20,7 +21,7 @@ router.get("/log-in", loginController);
 
 router.get("/message/:id", deleteMessageController);
 
-router.get("/join-club", memberPasscodeController);
+router.get("/join-club", joinClubController);
 
 router.get("/log-out", logoutController);
 

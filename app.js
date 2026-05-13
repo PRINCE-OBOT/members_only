@@ -8,7 +8,7 @@ const pool = require("./db/pool");
 const loginController = require("./controllers/log-in-controller");
 const isAuthenticatedController = require("./controllers/is-authenticated-controller");
 const errorController = require("./controllers/error-controller");
-const { title } = require("process");
+const flash = require("connect-flash");
 const pgSession = require("connect-pg-simple")(session);
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -36,6 +36,8 @@ app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 
+app.use(flash());
+
 app.use(isAuthenticatedController);
 
 app.use("/", router);
@@ -54,7 +56,6 @@ function passportAuthController(req, res, next) {
 
     if (!user) {
       return res.status(404).render("index", {
-        title: "Log in",
         pageTemplate: "login",
         error: info.message
       });

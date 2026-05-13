@@ -175,13 +175,17 @@ a {
 }
 
 /* form */
-.form_wrap {
+.form_wrap, .passcode_form {
   padding-top: 60px;
   width: min(90%, 450px);
   margin: 0 auto 0;
   box-shadow: var(--bx-shadow);
   border-radius: 5px;
   padding: 20px;
+}
+
+.passcode_form_admin{
+  margin-top: 50px;
 }
 
 .form_wrap,
@@ -340,4 +344,10 @@ hr {
 .message_icon {
   height: 20px;
   width: 20px;
+}
+
+.hint{
+  background: var(--sec-accent);
+  padding: 10px;
+  border-radius: 10px;
 }

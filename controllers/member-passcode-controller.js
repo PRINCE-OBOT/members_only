@@ -11,16 +11,22 @@ const validatePasscode = [
 const memberPasscodeController = [
   validatePasscode,
   async (req, res) => {
-    if (req.user.isadmin)
-      return res.status(400).json({ message: "You are already an admin" });
+    
+    if (req.user.ismember) {
+      req.flash("error", {
+        member: "You are already a member"
+      });
+
+      return res.redirect("/join-club");
+    }
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      // return res.status(400).render("sign-up", {
-      //   title: "Message",
-      //   errors: errors.array()
-      // });
-      return res.status(400).json({ errors: errors.array() });
+      req.flash("error", {
+        member: "Member passcode field must not be empty"
+      });
+
+      return res.redirect("/join-club");
     }
 
     const passcode = matchedData(req).passcode;
@@ -39,12 +45,14 @@ const memberPasscodeController = [
         isMember: true
       });
 
-      res.json({ message: "Valid" });
+      return res.redirect("/");
     } else {
-      res.json({ message: "inValid" });
-    }
+      req.flash("error", {
+        member: "Incorrect member passcode"
+      });
 
-    // res.redirect("/");
+      res.redirect("/join-club");
+    }
   }
 ];
 
