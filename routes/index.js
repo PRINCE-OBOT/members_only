@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const homePageController = require("../controllers/home-page-controller");
-const signupController = require("../controllers/sign-up-controller");
+const signup = require("../controllers/sign-up-controller");
 const { loginController } = require("../controllers/log-in-controller");
 const logoutController = require("../controllers/log-out-controller");
 const messageController = require("../controllers/message-controller");
@@ -10,22 +10,27 @@ const adminPasscodeController = require("../controllers/admin-passcode-controlle
 
 const router = Router();
 
+// get routes
+
 router.get("/", homePageController);
 
-router.post("/sign-up", signupController);
+router.get("/sign-up", signup.getController);
 
 router.get("/log-in", loginController);
-
-router.post("/message", messageController);
 
 router.get("/message/:id", deleteMessageController);
 
 router.get("/join-club", memberPasscodeController);
 
+router.get("/log-out", logoutController);
+
+// post routes
+router.post("/sign-up", signup.postController);
+
+router.post("/message", messageController);
+
 router.post("/join-club/member", memberPasscodeController);
 
 router.post("/join-club/admin", adminPasscodeController);
-
-router.get("/log-out", logoutController);
 
 module.exports = router;

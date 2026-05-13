@@ -31,27 +31,34 @@ const validateSignUp = [
   })
 ];
 
-const signupController = [
+const postController = [
   validateSignUp,
   async (req, res) => {
     const errors = validationResult(req);
+
+    const { firstName, lastName, email, password, confirmPassword } =
+      matchedData(req);
+
     if (!errors.isEmpty()) {
-      // return res.status(400).render("sign-up", {
-      //   title: "Sign Up",
-      //   errors: errors.array()
-      // });
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).render("index", {
+        title: "Sign Up",
+        pageTemplate: "sign-up",
+        errors: errors.array(),
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword
+      });
     }
-
-    const { firstName, lastName, email,  password } = matchedData(req);
-
+// if the first name is provided, input it in input, else add it error message bellow it
     const hashedPassword = await bcrypt.hash(password, 10);
 
     query.addUser({
       firstName,
       lastName,
       hashedPassword,
-      email,
+      email
     });
 
     res.json({ message: "signup" });
@@ -59,4 +66,8 @@ const signupController = [
   }
 ];
 
-module.exports = signupController;
+const getController = (req, res) => {
+  res.render("index", { title: "Sign Up", pageTemplate: "sign-up" });
+};
+
+module.exports = { getController, postController };
