@@ -4,7 +4,7 @@
   <form action="/sign-up" method="POST">
 
     <% if(locals.errors){%>
-        <div class="sign_up_error_wrap">
+        <div class="error_wrap">
             <% errors.forEach((error)=>{ %>
                 <li> <%= error.msg %>. </li>
             <% }) %>

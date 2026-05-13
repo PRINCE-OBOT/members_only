@@ -2,6 +2,13 @@
   <h2>Login</h2>
 
   <form action="/log-in" method="POST">
+
+    <% if(locals.error){%>
+        <div class="error_wrap">
+            <li> <%= error %>. </li>
+        </div>
+    <% } %>
+
     <div class="input_wrap">
       <label for="email">Email</label>
       <input type="email" placeholder="owen@gmail.com" name="email" required />

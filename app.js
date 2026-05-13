@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 app.use(
   session({
@@ -52,7 +52,11 @@ function passportAuthController(req, res, next) {
     if (err) return next(err);
 
     if (!user) {
-      return res.json({ message: "Login failed", error: info.message });
+      return res.status(404).render("index", {
+        title: "Log in",
+        pageTemplate: "login",
+        error: info.message
+      });
     }
 
     req.logIn(user, (err) => {
