@@ -175,7 +175,8 @@ a {
 }
 
 /* form */
-.form_wrap, .passcode_form {
+.form_wrap,
+.passcode_form {
   padding-top: 60px;
   width: min(90%, 450px);
   margin: 0 auto 0;
@@ -184,7 +185,7 @@ a {
   padding: 20px;
 }
 
-.passcode_form_admin{
+.passcode_form_admin {
   margin-top: 50px;
 }
 
@@ -261,21 +262,33 @@ input {
   }
 }
 
-.messages{
+.messages {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
 }
 
 .message_header {
-  display: flex;
-  align-items: start;
+  display: grid;
+  grid-template-columns: max-content max-content 1fr;
   gap: 20px;
-}
-
-.message_header {
   padding-bottom: 30px;
   border-bottom: 2px solid var(--transparent-black-lg);
+}
+
+.privacy_icon_wrap{
+  height: 40px;
+}
+
+.logout_wrap {
+  justify-self: right;
+  color: var(--sec-accent);
+  background: var(--pri-accent);
+  height: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .privacy_icon_wrap {
@@ -346,7 +359,7 @@ hr {
   width: 20px;
 }
 
-.hint{
+.hint {
   background: var(--sec-accent);
   padding: 10px;
   border-radius: 10px;
