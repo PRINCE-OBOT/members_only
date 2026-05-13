@@ -271,6 +271,19 @@ input {
   row-gap: 10px;
 }
 
+.profile{
+  text-align: right;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 9px 10px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  border-left: 2px solid var(--transparent-black-sm);
+  border-bottom: 2px solid var(--transparent-black-sm);
+}
+
 .message_header {
   display: flex;
   gap: 8px;

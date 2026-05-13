@@ -7,12 +7,10 @@ const homePageController = async (req, res) => {
 
   const user = req.user;
 
-  const userIs = user.isadmin ? "admin" : user.ismember ? "member" : "visitor";
-
   res.render("index", {
     title: "Club house",
     pageTemplate: "messages",
-    userIs,
+    user,
     rows,
     format
   });

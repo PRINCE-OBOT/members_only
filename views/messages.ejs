@@ -1,5 +1,11 @@
 <section class="messages">
+    <%  const userIs = user.isadmin ? "admin" : user.ismember ? "member" : "visitor";
+        const { firstname, lastname } = user;
+    %>
+    <div class="profile"> <%= `${firstname} ${lastname}` %> </div>
+
     <div class="message_header">
+
         <div class="privacy_icon_wrap">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
                 <path
