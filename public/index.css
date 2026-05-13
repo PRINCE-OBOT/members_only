@@ -244,3 +244,15 @@ input {
   column-gap: 5px;
   color: var(--pri-accent);
 }
+
+.sign_up_error_wrap{
+  background-color: rgb(227, 124, 124, 0.5);
+  padding: 9px;
+  border-radius: 10px;
+
+  li{
+    list-style: none;
+    color: rgb(69, 8, 8);
+    text-align: center;
+  }
+}
