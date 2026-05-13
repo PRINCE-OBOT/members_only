@@ -1,14 +1,20 @@
 const express = require("express");
 const { join } = require("path");
+
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
+
+const flash = require("connect-flash");
+const methodOverride = require("method-override");
+
 const router = require("./routes/index");
 const pool = require("./db/pool");
+
 const loginController = require("./controllers/log-in-controller");
 const isAuthenticatedController = require("./controllers/is-authenticated-controller");
 const errorController = require("./controllers/error-controller");
-const flash = require("connect-flash");
+
 const pgSession = require("connect-pg-simple")(session);
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -37,6 +43,8 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(flash());
+
+app.use(methodOverride('_method'))
 
 app.use(isAuthenticatedController);
 

@@ -44,10 +44,7 @@ const adminPasscodeController = [
         isMember: true,
         isAdmin: true
       });
-      res.render("index", {
-        title: "Club house",
-        pageTemplate: "messages"
-      });
+      res.redirect('/');
     } else {
       req.flash("error", {
         admin: "Incorrect admin passcode"

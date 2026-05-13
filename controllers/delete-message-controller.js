@@ -8,8 +8,7 @@ const deleteMessageController = async (req, res) => {
 
   query.deleteMessage(id);
 
-  res.json({ message: "Message deleted" });
-  // res.redirect("/");
+  res.redirect("/");
 };
 
 module.exports = deleteMessageController;

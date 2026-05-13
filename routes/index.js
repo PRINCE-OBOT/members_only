@@ -22,9 +22,6 @@ router.get("/sign-up", signup.getController);
 
 router.get("/log-in", loginController);
 
-// update get to delete
-router.get("/message/:id", deleteMessageController);
-
 router.get("/message", addMessageController);
 
 router.get("/join-club", joinClubController);
@@ -39,5 +36,10 @@ router.post("/message", messageController);
 router.post("/join-club/member", memberPasscodeController);
 
 router.post("/join-club/admin", adminPasscodeController);
+
+// delete router
+
+router.delete("/message/:id", deleteMessageController);
+
 
 module.exports = router;
