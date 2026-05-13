@@ -54,8 +54,9 @@
     <p><b>Join club level: </b><%= userIs === 'member' ? 'Member' : userIs === 'admin' ? 'Admin' : 'Visitor, Join club to have more access.' %></p>
 
     <div class="messages_wrap">
+        <h2>Messages</h2>
 
-        <% rows.forEach((row)=>{ %>
+        <% rows.reverse().forEach((row)=>{ %>
             <% const {title, text, useremail, createdat} = row %>
             <li class="message">
                 <h3 class="title"><%= title %></h3>

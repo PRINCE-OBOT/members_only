@@ -1,0 +1,45 @@
+<!-- delete message -->
+ <div class="form_wrap">
+  <h2>Message</h2>
+
+  <form action="/message" method="POST">
+
+    <% if(locals.errors){%>
+        <div class="error_wrap">
+            <li> <%= errors[0].msg %>. </li>
+        </div>
+    <% } %>
+
+    <div class="input_wrap">
+      <label for="title">Title</label>
+      <input type="text" placeholder="Rise of Guru 2" name="title" />
+    </div>
+
+    <div class="input_wrap">
+      <label for="text">Text</label>
+      <textarea class="message_text" placeholder="The journey of an underestimated mind, rising through power, struggle, and destiny..." name="text"></textarea>
+    </div>
+
+    <button class="submit_btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+      >
+        <path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5" />
+
+        <polyline points="16 17 21 12 16 7" />
+
+        <line x1="21" y1="12" x2="9" y2="12" />
+      </svg>
+      Send
+    </button>
+  </form>
+</div>

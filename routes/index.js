@@ -3,11 +3,14 @@ const homePageController = require("../controllers/home-page-controller");
 const signup = require("../controllers/sign-up-controller");
 const { loginController } = require("../controllers/log-in-controller");
 const logoutController = require("../controllers/log-out-controller");
+
 const messageController = require("../controllers/message-controller");
 const deleteMessageController = require("../controllers/delete-message-controller");
+
 const memberPasscodeController = require("../controllers/member-passcode-controller");
 const adminPasscodeController = require("../controllers/admin-passcode-controller");
 const joinClubController = require("../controllers/join-club-controller");
+const addMessageController = require("../controllers/add-message-controller");
 
 const router = Router();
 
@@ -19,7 +22,10 @@ router.get("/sign-up", signup.getController);
 
 router.get("/log-in", loginController);
 
+// update get to delete
 router.get("/message/:id", deleteMessageController);
+
+router.get("/message", addMessageController);
 
 router.get("/join-club", joinClubController);
 

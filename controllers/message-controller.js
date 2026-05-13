@@ -17,27 +17,27 @@ const messageController = [
   validateMessage,
   async (req, res) => {
     const errors = validationResult(req);
+    
     if (!errors.isEmpty()) {
-      // return res.status(400).render("sign-up", {
-      //   title: "Message",
-      //   errors: errors.array()
-      // });
-      return res.status(400).json({ errors: errors.array() });
+      return res.render("index", {
+        title: "Message",
+        pageTemplate: "add-message",
+        errors: errors.array()
+      });
     }
 
     const { title, text } = matchedData(req);
 
-    const { id, email } = req.user
+    const { id, email } = req.user;
 
     query.addMessage({
       userId: id,
       title,
       text,
-      email
+      userEmail: email
     });
 
-    res.json({ message: "Message sent" });
-    // res.redirect("/");
+    res.redirect("/");
   }
 ];
 

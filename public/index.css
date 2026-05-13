@@ -364,3 +364,11 @@ hr {
   padding: 10px;
   border-radius: 10px;
 }
+
+.message_text{
+  padding: 10px;
+  height: 200px;
+  resize: none;
+  border: 2px solid var(--pri-accent);
+  border-radius: 5px;
+}

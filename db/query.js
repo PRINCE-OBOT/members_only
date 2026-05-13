@@ -26,11 +26,11 @@ async function getUsers() {
 
 
 async function addMessage(message) {
-  const { title, text, email, userId } = message;
+  const { title, text, userEmail, userId } = message;
   
   await pool.query(
-    "INSERT INTO messages (title, text, email, createdAt, userId) VALUES ($1, $2, NOW(), $3)",
-    [title, text, email, userId]
+    "INSERT INTO messages (title, text, userEmail, createdAt, userId) VALUES ($1, $2, $3, NOW(), $4)",
+    [title, text, userEmail, userId]
   );
 }
 
