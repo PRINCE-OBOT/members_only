@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node --env-file=.env --watch app.js",
+    "start": "node app.js",
     "db_connect": "psql -U princeobot -d members_only",
     "db_view_users": "psql -U princeobot -d members_only -c 'SELECT * FROM users;'",
     "db_view_mes": "psql -U princeobot -d members_only -c 'SELECT * FROM messages;'"
