@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const express = require("express");
 const { join } = require("path");
 
@@ -14,7 +12,6 @@ const router = require("./routes/index");
 const pool = require("./db/pool");
 
 const loginController = require("./controllers/log-in-controller");
-const isAuthenticatedController = require("./controllers/is-authenticated-controller");
 const errorController = require("./controllers/error-controller");
 
 const pgSession = require("connect-pg-simple")(session);
@@ -25,7 +22,7 @@ const PORT = process.env.PORT || 3000;
 
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(express.static(join(__dirname), "public"));
+app.use(express.static("public"));
 
 app.set("trust proxy", 1);
 
@@ -50,11 +47,9 @@ app.use(flash());
 
 app.use(methodOverride("_method"));
 
-app.use(isAuthenticatedController);
+app.post("/log-in", passportAuthController);
 
 app.use("/", router);
-
-app.post("/log-in", passportAuthController);
 
 passport.use(loginController.localStrategy());
 
@@ -83,11 +78,9 @@ function passportAuthController(req, res, next) {
 }
 
 app.use((req, res) => {
-  res
-    .status(404)
-    .json({
-      message: "You seen to have entered the wrong path. path does not exist"
-    });
+  res.status(404).json({
+    message: "You seen to have entered the wrong path. path does not exist"
+  });
 });
 
 app.use(errorController);

@@ -11,16 +11,25 @@ const memberPasscodeController = require("../controllers/member-passcode-control
 const adminPasscodeController = require("../controllers/admin-passcode-controller");
 const joinClubController = require("../controllers/join-club-controller");
 const addMessageController = require("../controllers/add-message-controller");
+const isAuthenticatedController = require("../controllers/is-authenticated-controller");
 
 const router = Router();
 
-// get routes
+// Routes that are allowed to run without login in (authentication)
 
-router.get("/", homePageController);
+router.get("/log-in", loginController);
 
 router.get("/sign-up", signup.getController);
 
-router.get("/log-in", loginController);
+router.post("/sign-up", signup.postController);
+
+// Authentication
+
+router.use(isAuthenticatedController);
+
+// Routes to run after authentication
+
+router.get("/", homePageController);
 
 router.get("/message", addMessageController);
 
@@ -29,7 +38,6 @@ router.get("/join-club", joinClubController);
 router.get("/log-out", logoutController);
 
 // post routes
-router.post("/sign-up", signup.postController);
 
 router.post("/message", messageController);
 
@@ -40,6 +48,5 @@ router.post("/join-club/admin", adminPasscodeController);
 // delete router
 
 router.delete("/message/:id", deleteMessageController);
-
 
 module.exports = router;
