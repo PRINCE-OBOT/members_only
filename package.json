@@ -5,6 +5,7 @@
     "db_view_users": "psql -U princeobot -d members_only -c 'SELECT * FROM users;'",
     "db_view_mes": "psql -U princeobot -d members_only -c 'SELECT * FROM messages;'"
   },
+  
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "connect-flash": "^0.1.1",
