@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const { join } = require("path");
 
@@ -24,6 +26,8 @@ const PORT = process.env.PORT || 3000;
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+
+app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -78,13 +82,21 @@ function passportAuthController(req, res, next) {
   })(req, res, next);
 }
 
-app.use((req, res)=>{
-  res.status(404).json({message: 'You seen to have entered the wrong path. path does not exist'})
-})
+app.use((req, res) => {
+  res
+    .status(404)
+    .json({
+      message: "You seen to have entered the wrong path. path does not exist"
+    });
+});
 
 app.use(errorController);
 
-app.listen(PORT, (error) => {
-  if (error) throw error;
-  console.log(`App listening on port ${PORT}!`);
-});
+if (require.main === module) {
+  app.listen(PORT, (error) => {
+    if (error) throw error;
+    console.log(`App listening on port ${PORT}!`);
+  });
+}
+
+module.exports = app;
