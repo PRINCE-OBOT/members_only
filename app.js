@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 3000;
 
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(join(__dirname), "public"));
 
 app.set("trust proxy", 1);
 
